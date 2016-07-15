@@ -1,0 +1,71 @@
+html{
+    overflow: hidden;
+}
+body {
+    font-family: Microsoft JhengHei, Arial;
+    background-color: #ffffff;
+    color: #000;
+    text-align: center;
+}
+
+.main {
+    margin: 0px auto;
+    width: 300px;
+    height: 110px;
+    border: #a26743 3px dashed;
+    padding: 15px;
+}
+
+.top {
+    font-size: 56px;
+}
+
+.state {
+    font-size: 16px;
+    color: #000000;
+}
+
+.code {
+    font-size: 42px;
+    color: #ff0000;
+}
+
+.big {
+    font-size: 24px;
+    color: #000000;
+}
+
+.user {
+    display: inline;
+}
+
+.tool {
+    position: absolute;
+    width: 95%;
+    height: 100px;
+    bottom: 8%;
+    text-align: left;
+}
+
+.bg {
+    position: absolute;
+    width: 15%;
+    height: 200px;
+    top: 55%;
+}
+
+.right {
+    right: 10%;
+}
+
+.left {
+    left: 10%;
+}
+.center{
+    text-align: center;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}

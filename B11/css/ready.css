@@ -1,0 +1,45 @@
+body {
+    text-align: center;
+    background-color: #ffffff;
+    margin: 0;
+    overflow: hidden;
+    background-image: url('../img/ready.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position:50% 5%;
+}
+
+p {
+    font-size: 0.8em;
+    color: #ffffff;
+    line-height: 1.5em;
+}
+
+.player {
+    position: absolute;
+    display: inline;
+    text-align: center;
+    font-size: 2em;
+    width: 30%;
+    height: 50%;
+    top: 28%;
+    background-color: #ffffff;
+}
+
+.one {
+    left: 15%;
+    border: 3px dashed #008cdb;
+}
+
+.one p {
+    background-color: #008cdb;
+}
+
+.two {
+    left: 55%;
+    border: 3px dashed #d53a75;
+}
+
+.two p {
+    background-color: #d53a75;
+}

@@ -1,0 +1,84 @@
+.k-grid th.k-header,
+.k-grid-header
+{
+    background:#fff;
+
+}
+
+.k-grid th.k-header,
+.k-grid th.k-header .k-link
+{
+    color:#E45B82;
+    font-style: 微軟正黑體;
+}
+
+/*rows*/
+
+.k-grid-content>table>tbody>tr
+{
+    background:#FFECF9;
+}
+
+
+.k-grid-content>table>tbody>.k-alt
+{
+    background:#fff;
+}
+
+/*selection*/
+
+.k-grid table tr.k-state-selected
+{
+    background: #FF608D;
+    color: #fff;
+}
+
+.k-grid tbody .k-button {
+    color:#C37B3D;
+    border-style: dashed;
+    background-size: 1px;
+    border-color: #C37B3D;
+    background:#fff;
+}
+
+.top
+{
+    margin-left: 2.5%;
+    width: 95%;
+    padding: 10%;
+}
+table
+{
+    border-radius:10%;
+    border-style: dashed;
+    background:#fff;
+    border-size: 5px;
+    border-color: #FF608D;
+}
+
+.top tr,td
+{
+    text-align: left;
+}
+
+#AddBtn,#btnDelete,#btnSearch
+{
+    color:#E45B82;
+    border-style: dashed;
+    background-size: 1px;
+    border-color: #FF608D;
+    background:#fff;
+}
+
+#Total
+{
+    color:#EE151C;
+}
+
+h1
+{
+    text-align: center;
+    color:#fff;
+    background-color:#FFC9D8;
+    text-shadow:#F28CA9 4px 3px 0;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workshop One</title>
+    <meta charset="utf-8">
+    <link href="css/examples-offline.css" rel="stylesheet">
+    <link href="css/kendo.common.min.css" rel="stylesheet">
+    <link href="css/kendo.rtl.min.css" rel="stylesheet">
+    <link href="css/kendo.default.min.css" rel="stylesheet">
+    <link href="css/kendo.dataviz.min.css" rel="stylesheet">
+    <link href="css/kendo.dataviz.default.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+    <script src="js/console.js"></script>
+    <script src="js/products.js"></script>
+</head>
+<body>
+        <H1> Tiffany buyer </H1>
+        <div id="example">
+        	<table class="top">
+			    <tr>
+			        <td rowspan="3"><img id="ImgId" src="img/ror.jpg" ></td>
+			        <td>
+			        	產品
+			            <select id="mySelect">
+							<option value="img/ror.jpg">Ruby on Rails</option>
+							<option value="img/ps.jpg">Photoshop</option>
+							<option value="img/linux.jpg">Linux</option>
+							<option value="img/js.jpg">AngularJS</option>
+						</select>
+			        </td>
+			        <td>
+			        	交易方式
+		                <select id="Pay">
+		                    <option value="">現金</option>
+		                    <option value="">刷卡</option>
+		                </select>
+			        </td>
+			        <td></td>
+			    </tr>
+			    <tr>
+			        <td>
+			        	金額 <input type="text" id="Price" onkeyup="Count()" class="k-textbox"></input>
+			        </td>
+			        <td>
+			        	數量 <input type="text" id="Num" onkeyup="Count()" class="k-textbox"></input>
+			        </td>
+			        <td>
+		                總額 <input type="text" disabled="disabled" id="Total" class="k-textbox"> <button id="AddBtn" class="k-button" onclick="Add()">新增</button>
+			        </td>
+			    </tr>
+			    <tr>
+			    	<td>
+			    		刪除 <input type="text" id="deleteId" class="k-textbox" placeholder="輸入編號做刪除" autofocus></input>
+						<button id="btnDelete" class="k-button" onclick="Delect()">刪除</button>
+			    	</td>
+			    	<td>
+			    		查詢 <input type="text" id="txtSearch" class="k-textbox" placeholder="輸入編號或名稱查詢" autofocus></input>
+						<button id="btnSearch" class="k-button" onclick="Search()">查詢</button>
+			    	</td>
+			    	<td></td>
+			    </tr>
+			</table>
+			</BR>
+
+
+
+            <div id="grid"></div>
+
+
+
+
+            <script type="text/javascript">
+				//點選後換圖片
+				var ImgId=document.getElementById('ImgId');
+				var getmySelect=document.getElementById('mySelect');
+				getmySelect.onchange=function() {
+					var SelectedIndex=this.selectedIndex;
+					ImgId.src=this.options[SelectedIndex].value;
+                }
+
+                //自動計算總金額 = 金額*數量
+                function Count(){                       
+					Total.value=document.getElementById("Price").value * document.getElementById("Num").value;
+                }
+
+                //新增
+				function Add(){
+					var dataItem = $("#grid").data("kendoGrid").dataSource.data();
+					var productId = dataItem[dataItem.length - 1]["ProductID"] + 1; //編號要加一
+					var grid = $("#grid").data("kendoGrid");
+					grid.dataSource.add({ 
+						ProductID: productId,
+						ProductName: $("#mySelect").find(":selected").text(),
+						UnitPrice: "$"+$("#Price").val()+".00",
+						UnitsInStock : $("#Num").val(),
+						Transaction: $("#Pay").find(":selected").text(),
+					});
+					alert(productId + " 號訂單 " + $("#mySelect").find(":selected").text() + " 已新增");
+                }
+
+                //刪除
+                function Delect(){                              
+					var dataItem = $("#grid").data("kendoGrid").dataSource.data();
+					var productId = dataItem[dataItem.length - 1]["ProductID"];
+					var grid = $("#grid").data("kendoGrid");
+					var data = grid.dataSource.at($("#deleteId").val() - 1);
+					if($("#deleteId").val()==""){
+						alert("請輸入訂單編號");
+					}
+					else if($("#deleteId").val() > productId){
+						alert($("#deleteId").val() + " 號訂單不存在");
+					}
+					else{
+						grid.dataSource.remove(data);                        
+						alert($("#deleteId").val() + " 號訂單已刪除");
+					}
+					data = 0;
+					}
+
+
+		 		//查詢
+				function Search() {
+					var productsGrid = $('#grid').data('kendoGrid');
+					var dataSource = productsGrid.dataSource;
+					dataSource.filter("");
+					$ProductName = $("#txtSearch").val();
+					 dataSource.filter( { field: "ProductName", operator: "contains", value: $ProductName});
+				}
+
+                //Grid架構
+                $(document).ready(function() {
+                    $("#textButton").kendoButton();
+                    $("#grid").kendoGrid({
+                        dataSource: {
+                            data: products,										//資料來源
+                            schema: {
+                                model: {
+                                    fields: {
+                                        ProductName: { type: "string" },		//商品名稱
+                                        UnitPrice: { type: "number" },			//單價
+                                        UnitsInStock: { type: "number" },		//庫存
+                                        Transaction: { type: "string" }			//交易方式
+                                    }
+                                }
+                            },
+                            pageSize: 20
+                        },
+                        height: 550,
+                        scrollable: true,
+                        sortable: true,
+                        filterable: true,
+                        pageable: {
+                            input: true,
+                            numeric: false
+                        },
+                        columns: [
+                        	{ field: "ProductID", title: "編號", width: "50px" },
+                            { field: "ProductName", title: "產品名稱", width: "150px" },
+                            { field: "UnitPrice", title: "價錢", format: "{0:c}", width: "100px" },
+                            { field: "UnitsInStock", title: "數量", width: "50px" },
+                            { field: "Transaction", title:"交易方式", width: "50px" },
+                            { command: ["edit","destroy"],title: "&nbsp;", width: "100px" }		//編輯刪除
+                        ],
+                        editable:"popup"		//另外編輯
+                    });
+                });
+            </script>
+        </div>
+
+</html>
