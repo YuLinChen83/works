@@ -1,99 +1,143 @@
 import java.util.Scanner;
+
 class test5 {
 	public static void main(String[] args) {
-    System.out.println("Given a 2D board and a word, find if the word exists in the grid.");
-    System.out.print("Please input the board's width: ");
-    Scanner input = new Scanner(System.in);
-    int n = input.nextInt();
-    char[][] words = new char[n][n];
-    boolean[][] went = new boolean[n][n];
-    System.out.print("Please input the "+n*n+" words spilt by space: ");
-    char word;
-    for(int i=0;i<n;i++){
-        for(int j=0;j<n;j++){
-            word = input.next().charAt(0);
-            words[i][j]=word;
-        }
-        
-    }
-    System.out.println("Your 2D board is: ");
-    for(int i=0;i<n;i++){
-        for(int j=0;j<n;j++){
-            System.out.print(words[i][j]+" ");
-        }
-        System.out.println();
-    }
-    System.out.print("Please input the word to check if the word exists in the grid: ");
-    String wordss = input.next();
-    System.out.println("Your : "+wordss);
-    System.out.println(point(words,0,0,wordss,0,went));
-    
+		Scanner input = new Scanner(System.in);
+		int indexX = 0;
+		int indexY = 0;
+		boolean isS = false;
+		System.out
+				.println("Given a 2D board and a word, find if the word exists in the grid.");
+		System.out.print("Please input the board's width: ");
+		int width = input.nextInt();
+		System.out.print("Please input the board's height: ");
+		int height = input.nextInt();
+		char[][] charlist = new char[height][width];
+		boolean[][] went = new boolean[height][width];
+		System.out.print("Please input the " + height * width
+				+ " words spilt by space or enter: ");
+		char letter;
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				letter = input.next().charAt(0);
+				charlist[i][j] = letter;
+			}
+		}
+		System.out.println("Your 2D board is: ");
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				System.out.print(charlist[i][j] + " ");
+			}
+			System.out.println();
+		}
+		System.out
+				.print("Please input the word to check if the word exists in the grid: ");
+		String word = input.next();
+		System.out.println("Your: " + word);
+		System.out.print("Result: ");
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				if (isPass(charlist, word, 0, i, j, "start")) {
+					isS = true;
+					break;
+				} else {
+
+				}
+			}
+		}
+		System.out.println(isS);
+
 	}
 
-public static String point(char[][] words ,int arrayX, int arrayY, String word, int charindex, boolean[][] went) {
-    int index = charindex;
-    int x = arrayX;
-    int y = arrayY;
-System.out.println("x : "+x);
-System.out.println("y : "+y);
-System.out.println("word.charAt(charindex) : "+word.charAt(charindex));
-        if(x-1>=0 && words[x-1][y]==word.charAt(charindex)){
+	public static boolean isPass(char[][] arr, String word, int index,
+			int xIndex, int yIndex, String beforeStep) {
+		// arr:charlist; index:word's char index; xIndex,yIndex:position;
+		// beforeStep:from where
 
-            if(went[x-1][y]=true){
-            }else{
-                arrayX=x-1;
-                arrayY=y;
-                went[x-1][y]=true;
-                charindex++;
-                point(words, arrayX, arrayY, word, charindex, went);
-            }
-            
-        }else if(x+1 <= words[0].length-1 && words[x+1][y]==word.charAt(charindex)){
+		if (xIndex < 0 || xIndex >= 4 || yIndex < 0 || yIndex >= 4) {
+			return false;
+		} else if (word.charAt(index) == arr[xIndex][yIndex]) {
 
-            if(went[x+1][y]=true){
-                
-            }else{
-                arrayX=x+1;
-                arrayY=y;
-                went[x+1][y]=true;
-                charindex++;
-                point(words, arrayX, arrayY, word, charindex, went);
-            }
-            
-        }else if(y+1 <= words[0].length-1 && words[x][y+1]==word.charAt(charindex)){
+			if (index == word.length() - 1) {
+				return true;
 
-            if(went[x][y+1]=true){
-                
-            }else{
-                arrayX=x;
-                arrayY=y+1;
-                went[x][y+1]=true;
-                charindex++;
-                point(words, arrayX, arrayY, word, charindex, went);
-            }
-        }else if(y-1>=0 && words[x][y-1]==word.charAt(charindex)){
+			} else {
 
-            if(went[x][y-1]=true){
-                
-            }else{
-                arrayX=x;
-                arrayY=y-1;
-                went[x][y-1]=true;
-                charindex++;
-                point(words, arrayX, arrayY, word, charindex, went);
-            }
-        }else{
-            System.out.println("charindex : "+charindex);
-            System.out.println("word.length()-1 : "+(word.length()-1));
-            if(charindex==word.length()-1){
-                return "true";
-            }else{
-                return "false";
-            }
-        }
-        return "false";
+				index = index + 1;
+				if (beforeStep == "start") {
 
-}
+					if (isPass(arr, word, index, xIndex - 1, yIndex, "down")) {
+						return true;
+					} else if (isPass(arr, word, index, xIndex, 1 + yIndex,
+							"left")) {
+						return true;
+					} else if (isPass(arr, word, index, 1 + xIndex, yIndex,
+							"up")) {
+						return true;
+					} else if (isPass(arr, word, index, xIndex, yIndex - 1,
+							"right")) {
+						return true;
+					} else {
+						return false;
+					}
 
+				} else if (beforeStep == "up") {
+					if (isPass(arr, word, index, 1 + xIndex, yIndex, "up")) {
+						return true;
+					} else if (isPass(arr, word, index, xIndex, 1 + yIndex,
+							"left")) {
+						return true;
+					} else if (isPass(arr, word, index, xIndex, yIndex - 1,
+							"right")) {
+						return true;
+					} else {
+						return false;
+					}
 
+				} else if (beforeStep == "right") {
+					if (isPass(arr, word, index, xIndex - 1, yIndex, "down")) {
+						return true;
+					} else if (isPass(arr, word, index, xIndex, yIndex - 1,
+							"right")) {
+						return true;
+					} else if (isPass(arr, word, index, 1 + xIndex, yIndex,
+							"up")) {
+						return true;
+					} else {
+						return false;
+					}
+				} else if (beforeStep == "down") {
+					if (isPass(arr, word, index, xIndex, 1 + yIndex, "left")) {
+						return true;
+					} else if (isPass(arr, word, index, xIndex - 1, yIndex,
+							"down")) {
+						return true;
+					} else if (isPass(arr, word, index, xIndex, yIndex - 1,
+							"right")) {
+						return true;
+					} else {
+						return false;
+					}
+				} else if (beforeStep == "left") {
+					if (isPass(arr, word, index, xIndex - 1, yIndex, "down")) {
+						return true;
+					} else if (isPass(arr, word, index, 1 + xIndex, yIndex,
+							"up")) {
+						return true;
+					} else if (isPass(arr, word, index, xIndex, 1 + yIndex,
+							"left")) {
+						return true;
+					} else {
+						return false;
+					}
+				} else {
+					return false;
+				}
+
+			}
+
+		} else {
+			return false;
+		}
+	}
 }
