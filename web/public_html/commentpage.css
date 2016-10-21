@@ -1,0 +1,218 @@
+#header {
+}
+
+#rules{
+	width: 500px;
+	font-size:16pt;
+	text-align: center;
+	margin: auto;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	color: #ffffff;
+	font-family: 微軟正黑體,Verdana, sans-serif;
+	background: #10acb7;
+}
+
+#rules2{
+	width: 500px;
+	font-size:16pt;
+	text-align: center;
+	margin: auto;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	border: 1px dashed #10acb7;
+	/*color: #cccccc;*/
+	font-family: 微軟正黑體,Verdana, sans-serif;
+	background: #ffffff;
+}
+#rules2 a{
+	text-decoration: none;
+	color: #cccccc;
+	font-family: sans-serif,Verdana;
+}
+#rules2 a:hover{
+	color: #eeeeee;
+}
+
+#list{
+	margin: auto;
+	font-size: 24px;
+	color: #000000;
+	text-align: center;
+	font-family: 微軟正黑體,Verdana, sans-serif;
+}
+
+#comment{
+	margin: auto;
+	text-align: center;
+	padding-left: 4%;
+	font-size: 24px;
+	color: #000000;
+	font-family: Verdana, sans-serif;	
+}
+
+#home {
+	text-align: right;
+	padding-top: 10px;
+	padding-right: 30px;
+	font-size: 24px;
+}
+
+#home  a {
+	color: #e25f5f;
+	font-family: 微軟正黑體,Verdana, sans-serif;
+}
+#home a:hover {
+	color: #e7baba;
+	font-family: 微軟正黑體,Verdana, sans-serif;
+}
+
+textarea#styled {
+	margin: auto;
+	width: 50%;
+	height: 600px;
+	border: 1px solid #cccccc;
+	margin-left: 10px;
+	padding: 5px;
+	font-size: 20px;
+	font-family: Tahoma, sans-serif;
+	background-image: url(bg.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	font-family: 微軟正黑體,Verdana, sans-serif;
+}
+
+#commenthint{
+	font-size: 30px
+}
+
+a {
+	text-decoration: none;
+	color: #3D59AB;
+	font-family: Verdana, sans-serif;
+}
+
+p {
+	font-family: 微軟正黑體,Verdana, sans-serif;
+}
+
+body {
+	margin-top: 5%;
+	margin-bottom: 5%;
+	margin-left: 15%;
+	margin-right: 15%;
+	background-color: #ffffff;
+	padding-top: 2%;
+	padding-bottom: 3%;
+	background-image:url(bg.png); 
+    background-repeat: repeat-x; 
+}
+html {
+	background-color: #e2e2e2;
+	margin-bottom: 5%;
+}
+
+fieldset {
+	text-align: center;
+}
+
+form {
+	font-family: 微軟正黑體,Verdana, sans-serif;
+}
+
+#submit {
+    background-color: #e25f5f;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+}
+
+#img{
+	padding-top: 2%;
+	padding-bottom: 3%;
+}
+
+#img:hover {
+    border: none;
+    background:#ffffff;
+}
+
+#img a img {
+
+}
+#img a:hover img {
+	-moz-opacity: 0.8;
+	opacity: 0.8;
+	filter: Alpha(Opacity=80);
+}
+
+.buttons{
+	background:#FFFFFF;
+	margin-left:25%;
+	padding:1%;
+	width:50%;
+	text-align:center;
+	border-radius: 10px;
+	font-family: 微軟正黑體,Verdana, sans-serif;
+	margin-bottom: 1%;
+	font-size: 16px;
+	border-style:dashed;
+	border-color:#deb887;
+	outline: none;
+}
+
+.buttonLink{
+	background:#FFFFFF;
+	margin-left:3%;
+	padding:1%;
+	width:45%;
+	text-align:center;
+	border-radius: 10px;
+	font-family: 微軟正黑體,Verdana, sans-serif;
+	margin-bottom: 1%;
+	font-size: 16px;
+	border-style:dashed;
+	border-color:#deb887;
+	float:left;
+	outline: none;
+}
+.tables{
+	padding:1%;
+	border: 1px dashed #e25f5f;
+	font-size: 18px;
+	background:#FFFFFF;
+	width: 70%;
+}
+
+TD {
+	border: 0px;
+	background:#FFFFFF;
+	padding:1%;
+}
+
+.btn {
+	font-family: 微軟正黑體,Verdana, sans-serif;
+	padding-left:1%;
+	padding-right:1%;
+	border: 1px solid #908e8e;
+	background:#FFFFFF;
+	color:#908e8e;
+	font-size: 16px;
+	width: 65px;
+}
+
+.inp {
+	font-size: 16px;
+	font-family: 微軟正黑體,Verdana, sans-serif;
+	padding-left:1%;
+	padding-right:1%;
+	border: 1px solid #908e8e;
+	background:#FFFFFF;
+	color:#908e8e;
+}
